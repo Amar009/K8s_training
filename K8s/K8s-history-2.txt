@@ -1,0 +1,228 @@
+1016  kubectl get pods
+ 1017  kubectl create -f helloworld.yml
+ 1018  kubectl get pods
+ 1019  kubectl get deployments
+ 1020  kubectl get rs
+ 1021  kubectl describe rs helloworld-deployment-6664884558
+ 1022  ls
+ 1023  kubectl get deployment
+ 1024  kubectl scale --replicas=10 deployment helloworld-deployment
+ 1025  kubectl get rs
+ 1026  kubectl get pods
+ 1027  ls
+ 1028  kubectl get deployments
+ 1029  kubectl expose deployment helloworld-deployment --type=Loadbalancer
+ 1030  kubectl expose deployment helloworld-deployment --type=LoadBalancer
+ 1031  kubectl get svc
+ 1032  cd
+ 1033  kubectl get deployment
+ 1034  kubectl describe deployment helloworld-deployment
+ 1035  kubectl set image deployment
+ 1036  kubectl set image deployment helloworld-deployment k8s-demo=amitvashist7/k8s-tiny-web:2
+ 1037  kubectl get pods
+ 1038  kubectl set image deployment helloworld-deployment k8s-demo=amitvashist7/k8s-tiny-web:3
+ 1039  kubectl scale --replicas=15 deployment helloworld-deployment
+ 1040  kubectl set image deployment helloworld-deployment k8s-demo=amitvashist7/k8s-tiny-web:4
+ 1041  kubectl set image deployment helloworld-deployment k8s-demo=amitvashist7/k8s-tiny-web:2
+ 1042  kubectl set image deployment helloworld-deployment k8s-demo=amitvashist7/k8s-tiny-web:3
+ 1043  kubectl get deployments
+ 1044  kubectl get rs
+ 1045  ls
+ 1046  kubectl rollout undo deployment helloworld-deployment
+ 1047  kubectl get rs
+ 1048  kubectl describe rs helloworld-deployment-7c479664b6
+ 1049  kubectl get rs
+ 1050  kubectl describe rs helloworld-deployment-56568f6d7c
+ 1051  kubectl rollout undo deployment helloworld-deployment
+ 1052  kubectl get rs
+ 1053  kubectl rollout history deployment helloworld-deployment
+ 1054  kubectl rollout undo deployment helloworld-deployment --to-revsion=1
+ 1055  kubectl rollout undo deployment helloworld-deployment --to-revision=1
+ 1056  kubectl get rs
+ 1057  kubectl rollout history deployment helloworld-deployment revision=1
+ 1058  kubectl rollout history deployment helloworld-deployment revision=9
+ 1059  kubectl rollout history deployment helloworld-deployment --revision=9
+ 1060  kubectl rollout history deployment helloworld-deployment --revision=8
+ 1061  kubectl rollout history deployment helloworld-deployment --revision=4
+ 1062  kubectl rollout history deployment helloworld-deployment --revision=7
+ 1063  kubectl rollout history deployment helloworld-deployment
+ 1064  kubectl rollout history deployment helloworld-deployment --revision=7
+ 1065  kubectl rollout undo deployment helloworld-deployment --to-revision=7
+ 1066  kubectl get rs
+ 1067  ls
+ 1068  cd k8s-docker-20190819/
+ 1069  ls
+ 1070  cp -rf K8s/04-Deployment/helloworld.yml .
+ 1071  vim helloworld.yml
+ 1072  kubectl create -f helloworld.yml
+ 1073  kubectl get deployments
+ 1074  kubectl get rs
+ 1075  kubectl set image deployment helloworld-deploy k8s-demo=amitvashist7/k8s-tiny-web:3
+ 1076  kubectl get rs
+ 1088  kubectl get deployment --delete-all
+ 1089  kubectl delete deployment --all
+ 1090  kubectl get svc
+ 1091  kubectl delete svc helloworld-deployment
+ 1092  kubectl get svc
+ 1093  kubectl run dcoker-demo --image=amitvashist7/get-started:part2 --port=80
+ 1094  kubectl get deployments
+ 1095  kubectl get rs
+ 1096  kubectl get pod
+ 1097  kubectl expose deployment dcoker-demo --type=NodePort
+ 1098  kubectl get svc
+ 1099  kubectl get pod -o wide
+ 1100  curl 10.128.15.206
+ 1101  curl 10.128.15.206:31457
+ 1102  kubectl get svc
+ 1103  kubectl expose deployment dcoker-demo --type=LoadBalancer
+ 1104  kubectl edit svc dcoker-demo
+ 1105  kubectl get svc
+ 1107  kubectl get deployments
+ 1108  kubectl scale --replicas=5 deployments dcoker-demo
+ 1109  kubectl get deployments
+ 1110  kubectl get pods
+ 1111  kubectl get svc
+ 1112  kubectl describe svc dcoker-demo
+ 1113  kubectl get pods -o wide
+ 1114  kubectl scale --replicas=3 deployments dcoker-demo
+ 1115  kubectl describe svc dcoker-demo
+ 1116  kubectl scale --replicas=1 deployments dcoker-demo
+ 1117  kubectl describe svc dcoker-demo
+ 1118  kubectl scale --replicas=3 deployments dcoker-demo
+ 1119  kubectl describe svc dcoker-demo
+ 1120  kubectl expose deployment dcoker-demo --external-ip=172.31.0.11
+1020  kubectl get nodes --show-labels
+ 1021  kubectl label nodes gke-k8s-demo-default-pool-e4c7cbc5-6xf8 hardware=virtual
+ 1022  cat helloworld-nodeselector.yml
+ 1023  kubectl get pods
+ 1024  kubectl label nodes gke-k8s-demo-default-pool-e4c7cbc5-6xf8 env=prod
+ 1025  kubectl get pods
+ 1026  kubectl get pods -o wide
+ 1027  kubectl get nodes --show-labels
+ 1028  kubectl label nodes gke-k8s-demo-default-pool-e4c7cbc5-j7bj hardware=virtual
+ 1029  ls
+ 1030  cp -rf helloworld-nodeselector.yml helloworld-nodeselector-2.yml
+ 1031  vim helloworld-nodeselector-2.yml
+ 1032  kubectl create -f helloworld-nodeselector-2.yml
+ 1033  kubectl get pods
+ 1034  kubectl get pods -o wide | grep -i helloworld-deployment-3
+ 1035  ls
+ 1036  cat helloworld.yml
+ 1037  kubectl create -f helloworld.yml
+1040  kubectl delete deployments --all
+ 1047  kubectl create -f wordpress-secrets.yml
+ 1048  kubectl get secrets
+ 1049  ls
+ 1050  cat wordpress-single-deployment-no-volumes.yml
+ 1051  kubectl create -f wordpress-single-deployment-no-volumes.yml
+ 1052  kubectl get pods
+ 1053  kubectl describe pod wordpress-deployment-7b954b495d-g8pqn
+ 1054  ls
+ 1055  cat wordpress-service.yml
+ 1056  vim wordpress-service.yml
+ 1057  kubectl create -f wordpress-service.yml
+ 1058  kubectl get pods
+ 1059  kubectl get svc
+ 1060  kubectl get pods
+ 1061  kubectl describe pod wordpress-deployment-7b954b495d-g8pqn
+ 1062  kubectl exec -it wordpress-deployment-7b954b495d-g8pqn -c mysql -- mysql -u root -p
+ 1063  ls
+ 1064  cat wordpress-service.yml
+ 1065  ls
+ 1066  cd ..
+ 1067  ls
+ 1068  kubectl get svc
+ 1069  kubectl delete svc wordpress-service
+ 1070  kubectl delete deployment --all
+1081  kubectl get ns
+ 1082  kubectl get pods -n kube-system
+ 1083  ls
+ 1084  cd 06-Service-discovery/
+ 1085  ls
+ 1086  cat secrets.yml
+ 1087  kubectl create -f secrets.yml
+ 1088  ls
+ 1089  cat helloworld-db.yml
+ 1090  ls
+ 1091  cat database.yml
+ 1092  ls
+ 1093  kubectl create -f database.yml
+ 1094  ls
+ 1095  cat database-service.yml
+ 1096  kubectl get pods
+ 1097  kubectl create -f database-service.yml
+ 1098  kubectl get svc
+ 1099  ls
+ 1100  cat helloworld-db.yml
+ 1101  ls
+ 1102  kubectl create -f helloworld-db.yml
+ 1103  kubectl get pods
+1103  kubectl get pods
+ 1104  ls
+ 1105  cat helloworld-db.yml
+ 1106  ls
+ 1107  cat helloworld-db-service.yml
+ 1108  kubectl create -f helloworld-db-service.yml
+ 1109  kubectl get svc
+ 1110  kubectl edit svc helloworld-db-service
+ 1111  kubectl get svc
+ 1112  ls
+ 1113  cat helloworld-db.yml
+ 1114  kubectl get svc
+ 1115  kubectl run -it --image=busybox --restart=Never -- /bin/sh
+ 1116  kubectl run -i --tty busynbox --image=busybox --restart=Never -- /bin/sh
+ 1117  kubectl get svc
+ 1118  kubectl get pods
+ 1119  kubectl run -i --tty busynbox --image=busybox --restart=Never -- /bin/sh
+ 1120  kubectl run -i --tty busybox --image=busybox --restart=Never -- /bin/sh
+
+1130  kubectl exec -it database  -- mysql -u root -p
+ 1131  ls
+ 1132*
+ 1133  kubectl get pods,deployments,svc,secrets
+ 1134  kubectl delete -f 06-Service-discovery/
+ 1135  kubectl get pods,deployments,svc,secrets
+ 1136  ls
+ 1137  kubectl pods
+ 1138  kubectl get pods
+ 1139  kubectl delete pods busybox    busynbox
+ 1140  ls
+ 1141  cp -rf ../../kubernetes-project/configmap 07-ConfigMap
+ 1142  ls
+ 1143  cd 07-ConfigMap/
+ 1144  ls
+ 1145  cat reverseproxy.conf
+ 1146  kubectl get configmap
+ 1147  cat nginx.yml
+ 1148  kubectl create configmap nginx-config --from-file=reverseproxy.conf
+ 1149  kubectl get configmap
+ 1150  kubectl describe configmap nginx-config
+
+1151  ls
+ 1152  vim nginx.yml
+ 1153  ls
+ 1154  kubectl create -f nginx.yml
+ 1155  kubectl get pods
+ 1156  kubectl desribe pod helloworld-nginx
+ 1157  kubectl describe pod helloworld-nginx
+ 1158  ls
+ 1159  kubectl create -f nginx.yml
+ 1160  kubectl create -f nginx-service.yml
+ 1161  kubectl get svc
+ 1162  kubectl edit svc helloworld-nginx-service
+ 1163  kubectl get svc
+ 1164  ls
+ 1165  kubectl get svc
+ 1166  ls
+ 1167  vim nginx.yml
+ 1168  kubectl get pods
+ 1169  kubectl exec -it helloworld-nginx -c nginx -- bash
+ 1170  kubectl get pods
+ 1171  kubectl get configMap
+ 1172  kubectl edit configMap nginx-config
+ 1173  kubectl exec -it helloworld-nginx -c nginx -- bash
+
+
+
+
+

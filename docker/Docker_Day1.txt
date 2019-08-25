@@ -1,0 +1,494 @@
+    1  apt-get update ; apt-get install     apt-transport-https     ca-certificates     curl     gnupg-agent     software-properties-common -y
+    2  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    3  add-apt-repository    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+    4     $(lsb_release -cs) \
+    5     stable"
+    6  apt-get update ; apt-get install docker-ce docker-ce-cli containerd.io
+    7  docker version 
+    8  ls
+    9  docker version 
+   10  docker run ubuntu echo "Hello World"
+   11  docker run ubuntu echo "Welcome to the world of Docker"
+   12  docker images 
+   13  docker search ubuntu
+   14  docker --help
+   15  docker pull amitvashist7/myapache-acc:v1
+   16  docker images 
+   17  docker pull amitvashist7/apache-ex4:latest
+   18  docker login 
+   19  docker pull amitvashist7/apache-ex4:latest
+   20  ls
+   21  docker images 
+   22  docker run -it ubuntu 
+   23  docker ps 
+   24  docker ps -a
+   25  docker run -itd ubuntu 
+   26  docker ps 
+   27  docker run -itd ubuntu 
+   28  docker ps 
+   29  docker run -itd --name myapp-node-01 ubuntu 
+   30  docker run -itd --name myapp-node-02 ubuntu 
+   31  docker ps 
+   32  docker stop $(docker ps -q)
+   33  docker ps 
+   34  docker ps -a
+   35  docker ps -aq
+   36  docker ps -a
+   37  docker start myapp-node-01
+   38  docker ps 
+   39  docker attach myapp-node-01
+   40  docker ps 
+   41  docker kill 
+   42  docker kill myapp-node-01
+   43  docker ps 
+   44  docker start myapp-node-01
+   45  docker attach myapp-node-01
+   46  docker ps 
+   47  docker inspect myapp-node-01
+   48  history 
+   49  docker ps 
+   50  docker inspect --format '{{.Name}} {{.NetworkSettings.IPAddress}}' myapp-node-01
+   51  docker run -it centos 
+   52  curl localhost
+   53  docker ps 
+   54  docker inspect ae950689e1c3        
+   55  curl 172.17.0.3
+   56  docker history 
+   57  docker images
+   58  docker ps 
+   59  docker commit -p -m "Install Httpd Image" ae950689e1c3 myhttpd:v1
+   60  docker images 
+   61  docker run -it myhttpd:v1 
+   62  docker ps 
+   63  docker commit -p -m "Install Httpd Image-2" 489e9fe5dd9b         myhttpd:v2
+   64  docker ps 
+   65  docker images 
+   66  docker run -it myhttpd:v2 
+   67  docker run -itd myhttpd:v2 
+   68  curl 172.17.0.6
+   69  history 
+   70  git clone https://github.com/amitvashist7/k8s-docker-20190819.git
+   71  ls
+   72  cd k8s-docker-20190819/
+   73  ls
+   74  mkdir docker
+   75  ls
+   76  cd docker/
+   77  ls
+   78  history > Docker_Day1.txt
+   79  git add . ; git commit -m "Docker Hist"; git push origin master 
+   80  ls
+   81  docker images 
+   82  docker history myhttpd:v2
+   83  ls
+   84  mkdir Dockerfile
+   85  cd Dockerfile/
+   86  ls
+   87  mkdir apache
+   88  cd apache/
+   89  ls
+   90  vim Dockerfile
+   91  ls
+   92  docker images 
+   93  docker build -t myapache:v1 .
+   94  docker images 
+   95  docker run -d myapache:v1
+   96  docker ps 
+   97  docker inspect d3e5e4f33402        
+   98  curl 172.17.0.7
+   99  ls
+  100  cd ..
+  101  ls
+  102  cd 
+  103  ls
+  104  cd k8s-docker-20190819/
+  105  ls
+  106  docker images 
+  107  docker tag myapache:v1 amitvashist7/myapache-qual:v1 
+  108  docker images 
+  109  docker login 
+  110  docker push amitvashist7/myapache-qual:v1
+  111  ls
+  112  docker kill $(docker ps -aq)
+  113  docker rm $(docker ps -aq)
+  114  docker ps 
+  115  docker ps -a
+  116  docker images
+  117  docker images -q
+  118  docker rmi $(docker images -q)
+  119  docker images -q
+  120  docker rmi $(docker images -q)
+  121  docker rmi $(docker images -q) --force
+  122  docker images -q
+  123  ls
+  124  cd 
+  125  docker version 
+  126  docker images 
+  127  docker ps -a 
+  128  docker pull amitvashist7/myapache-qual:v1
+  129  docker images 
+  130  docker run -d amitvashist7/myapache-qual:v1 
+  131  curl 172.17.0.2
+  132  ls
+  133  cd k8s-docker-20190819/
+  134  ls
+  135  git add . ; git commit -m "Docker File v1"; git push origin master 
+  136  ls
+  137  cd docker/
+  138  ls
+  139  history > Docker_Day1.txt 
+  140  git add . ; git commit -m "Docker File v1 - Hist"; git push origin master 
+  141  ls
+  142  cd Dockerfile/
+  143  ls
+  144  cd 
+  145  ls
+  146  mkdir Test
+  147  ls
+  148  cd Test/
+  149  ls
+  150  vim Dockerfile
+  151  cat Dockerfile 
+  152  vim index.php
+  153  ls
+  154  docker build -t testapache:v1 . 
+  155  docker ps 
+  156  docker images 
+  157  ls
+  158  cd 
+  159  ls
+  160  cd k8s-docker-20190819/
+  161  ls
+  162  cd docker/
+  163  ls
+  164  docker ps 
+  165  ls
+  166  cd Dockerfile/
+  167  ls
+  168  cd apache/
+  169  ls
+  170  vim Dockerfile 
+  171  docker images 
+  172  docker build -t amitvashist7/myapache-qual:v2
+  173  docker build -t amitvashist7/myapache-qual:v2 .
+  174  docker images 
+  175  docker run -d amitvashist7/myapache-qual:v2
+  176  docker ps 
+  177  docker inspect e9903f02ffc3        
+  178  curl 172.17.0.3
+  179  ls
+  180  vim Dockerfile 
+  181  docker run -d amitvashist7/myapache-qual:v3
+  182  docker run -d amitvashist7/myapache-qual:v3 .
+  183  docker build -t amitvashist7/myapache-qual:v3 .
+  184  docker run -d amitvashist7/myapache-qual:v3 
+  185  curl 172.17.0.4
+  186  ls
+  187  vim info.html
+  188  ls
+  189  vim Dockerfile 
+  190  sls
+  191  ls
+  192  docker build -t amitvashist7/myapache-qual:v4 .
+  193  docker run -d amitvashist7/myapache-qual:v4
+  194  curl 172.17.0.5
+  195  curl 172.17.0.5/info.html
+  196  ls
+  197  i Docke
+  198  ls
+  199  git add . ; git commit -m "Docker File v2 - Hist"; git push origin master 
+  200  ls
+  201  docker images 
+  202  docker ps -a 
+  203  docker container ls 
+  204  docker container ls -a
+  205  docker volume ls 
+  206  docker  volume create my-vol
+  207  docker volume ls 
+  208  docker volume inspect my-vol
+  209  dockerls
+  210  docker images 
+  211  docker run -itd --name devtest --mount source=my-vol,target=/myapp amitvashist7/myapache-qual:v1 
+  212  docker ps 
+  213  docker attach devtest
+  214  docker ps 
+  215  docker run -itd --name devtest01 --mount source=my-vol,target=/myapp ubuntu 
+  216  docker ps 
+  217  docker attach devtest01
+  218  docker volume ls 
+  219  docker volume inspect my-vol
+  220  cd /var/lib/docker/volumes/my-vol/_data
+  221  ls
+  222  cd amitvashist/
+  223  cat now 
+  224  date >> now 
+  225  cat now 
+  226  docker attach devtest01
+  227  docker ps 
+  228  ls
+  229  cat now 
+  230  docker rm devtest01
+  231  docker ps -a 
+  232  ls
+  233  cat now 
+  234  cd 
+  235  cd - 
+  236  ls
+  237  cat now 
+  238  cd ..
+  239  ls
+  240  cd ..
+  241  ls
+  242  cd ..
+  243  ls
+  244  cd 
+  245  ls
+  246  docker volume ls 
+  247  docker run -itd --name devtest02 -v /var/www/logs ubuntu 
+  248  docker ps 
+  249  docker volume ls 
+  250  docker
+  251  docker volume ls 
+  252  docker ps 
+  253  docker inspect b0c8658d37aa        
+  254  ls
+  255  docker ps 
+  256  docker attach devtest02
+  257  cd /var/lib/docker/volumes/46e59bdac1d8b44f54d9fb3d8559829de0e517f52e922cf71b8da7423951ab38/
+  258  ls
+  259  cd _data/
+  260  ls
+  261  cat now.txt 
+  262  ls
+  263  cd ..
+  264  cd
+  265  ls
+  266  cd k8s-docker-20190819/
+  267  ls
+  268  cd docker/
+  269  ls
+  270  history 
+  271  history > Docker_Day1.txt 
+  272  git add . ; git commit -m "Docker File v2 - Hist"; git push origin master 
+  273  ip netns 
+  274  docker network ls 
+  275  ls
+  276  cd ls
+  277  cd 
+  278  ls
+  279  cd /var/run/docker/netns/
+  280  ls
+  281  ls -a
+  282  ls
+  283  docker ps 
+  284  docker run -itd ubuntu
+  285  ip netns 
+  286  ls
+  287  cd ..
+  288  ln -s /var/run/docker/netns /var/run/netns
+  289  ip netns 
+  290  docker ps 
+  291  docker inspect f899e90a1a82 | grep -i 3b663689ebfd 
+  292  ip link 
+  293  ip -n 3b663689ebfd link
+  294  ip -n 3b663689ebfd addr
+  295  history 
+  296  cd
+  297  docker volumes 
+  298  docker volumes ls 
+  299  docker volume ls 
+  300  docker volumes 
+  301  docker ps -aq
+  302  docker kill $(docker ps -aq)
+  303  docker rm $(docker ps -aq)
+  304  docker volume ls 
+  305  docker volume ls -
+  306  docker volume ls -q
+  307  docker volume rm $(docker volume ls -q)
+  308  docker volume ls 
+  309  docker run --name alpha -itd -v /var/log busybox /bin/sh 
+  310  docker images 
+  311  docker ps 
+  312  docker run -it --name beta --volume-from alpha ubuntu /bin/bash
+  313  docker run -it --name beta --volumes-from alpha ubuntu /bin/bash
+  314  docker volume ls 
+  315  cd  /var/lib/docker/volumes/d439953115e9889421e363629228acbc07699b7403510693f12b7b60f0a88afc/
+  316  ls
+  317  cd _data/
+  318  ls
+  319  cat date 
+  320  cd 
+  321  docker volume craete myvol02
+  322  docker volume create myvol02
+  323  docker run -it --name beta01 --volumes-from alpha --mount src=myvol02,target=/var/myapp ubuntu /bin/bash
+  324  cd /var/lib/docker/volumes/
+  325  ls
+  326  cd myvol02/
+  327  ls
+  328  cat _data/hello.txt 
+  329  cat ../d439953115e9889421e363629228acbc07699b7403510693f12b7b60f0a88afc/_data/hostname 
+  330  cd 
+  331  ls
+  332  cd k8s-docker-20190819/
+  333  ls
+  334  cd docker/
+  335  ls
+  336  cd Dockerfile/
+  337  ls
+  338  cd apache/
+  339  ls
+  340  pwd
+  341  docker images 
+  342  docker run -d -v /root/k8s-docker-20190819/docker/Dockerfile/apache:/var/www/html/myapp amitvashist7/myapache-qual:v4
+  343  docker ps 
+  344  docker inspect 5f1ed4ab3bc2        
+  345  curl 172.17.0.4
+  346  curl 172.17.0.4/info.html
+  347  curl 172.17.0.4/myapp/Dockerfile
+  348  curl 172.17.0.4/myapp/info.html
+  349  ls
+  350  vim info.html 
+  351  curl 172.17.0.4/myapp/info.html
+  352  docker run -it -v /root/k8s-docker-20190819/docker/Dockerfile/apache:/var/www/html/myapp ubuntu /bin/bash
+  353  curl 172.17.0.4/myapp/info.html
+  354  docker run -it -v /root/k8s-docker-20190819/docker/Dockerfile/apache:/var/www/html/myapp:ro ubuntu /bin/bash
+  355  cd ..
+  356  ls
+  357  cd ..
+  358  ls
+  359  history 
+  360  history > Docker_Day1.txt 
+  361  git add . ; git commit -m "Docker File v2 - Hist"; git push origin master 
+  362  ls
+  363  cd k8s-docker-20190819/
+  364  ls
+  365  cd
+  366  cd - 
+  367  ls
+  368  cd docker/
+  369  ls
+  370  cd Dockerfile/
+  371  ls
+  372  cd apache/
+  373  ls
+  374  vim Dockerfile 
+  375  ls
+  376  docker ps 
+  377  cd 
+  378  ls
+  379  docker network ls 
+  380  docker run -it  --network none ubuntu /bin/bash
+  381  docker run -it  --network none centos /bin/bash
+  382  docker ps 
+  383  netstat -tulnp 
+  384  netstat -tulnp | grep -i 80 
+  385  docker run -d --network host amitvashist7/myapache-qual:v4
+  386  docker ps 
+  387  netstat -tulnp | grep -i 80 
+  388  docker run -d --network host amitvashist7/myapache-qual:v2
+  389  docker ps 
+  390  netstat -tulnp 
+  391  netstat -tulnp | grep -i 80 
+  392  ip addr 
+  393  docker ps 
+  394  docker kill $(docker ps -aq)
+  395  ls
+  396  ip addr 
+  397  docker network ls 
+  398  docker network inspect cb13366122d5        
+  399  docker run -d amitvashist7/myapache-qual:v2
+  400  docker ps 
+  401  ip addr 
+  402  docker network inspect cb13366122d5        
+  403  docker run -d --name alpha amitvashist7/myapache-qual:v2
+  404  docker run -d --name alpha01 amitvashist7/myapache-qual:v2
+  405  ip addr 
+  406  docker network inspect cb13366122d5        
+  407  ip addr 
+  408  curl 172.17.0.3
+  409  curl 172.17.0.4
+  410  docker network inspect cb13366122d5        
+  411  ip addr 
+  412  ip netns 
+  413  docker inspect alpha01
+  414  ip netns 
+  415  docker inspect alpha01 | grep -i 19a4ff6544dc 
+  416  docker ps 
+  417  docker inspect 1a12b079cd0e       | grep -i 986b704969c8 
+  418  ip -n 19a4ff6544dc  link
+  419  ip addr 
+  420  ip -n 19a4ff6544dc  link
+  421  ip -n 19a4ff6544dc  addr 
+  422  ip netns 
+  423  cd /var/lib/docker/network/
+  424  ls
+  425  cd files/
+  426  ls
+  427  cd ..
+  428  ls
+  429  cd ..
+  430  ls
+  431  cd ..
+  432  cd run/docker/
+  433  ls
+  434  cd netns/
+  435  ls
+  436  file 19a4ff6544dc 
+  437  cd 
+  438  ip netns 
+  439  ls -ltr /var/run/netns/
+  440  ls -ltr /var/run/netns
+  441  ls
+  442  cd k8s-docker-20190819/
+  443  ls
+  444  cd docker/
+  445  ls
+  446  history > Docker_Day1.txt 
+  447  git add . ; git commit -m "Docker File v2 - Hist"; git push origin master 
+  448  docker ps 
+  449  docker run -d -P amitvashist7/myapache-qual:v2 
+  450  docker ps 
+  451  docker run -d -P amitvashist7/myapache-qual:v2 
+  452  docker ps 
+  453  netstat -tulnp | grep 32769
+  454* netstat -tul
+  455  docker run -d -P amitvashist7/myapache-qual:v4 
+  456  docker ps 
+  457  docker run -d -p 8080:80 amitvashist7/myapache-qual:v4 
+  458  docker run -d -p 8081:80 amitvashist7/myapache-qual:v4 
+  459  docker ps 
+  460  netstat -tulnp
+  461  iptables -L
+  462  history 
+  463  docker ps 
+  464  docker images 
+  465  docker images inspect amitvashist7/myapache-qual:v4
+  466  docker image inspect amitvashist7/myapache-qual:v4
+  467  docker image inspect amitvashist7/myapache-qual:v1
+  468  docker image inspect amitvashist7/myapache-qual:v1 --help
+  469  docker image inspect amitvashist7/myapache-qual:v1 -f 
+  470  docker image inspect amitvashist7/myapache-qual:v1 -f abc
+  471  ls
+  472  docker image inspect amitvashist7/myapache-qual:v1 -f go
+  473  docker image inspect amitvashist7/myapache-qual:v1
+  474  docker network ls 
+  475  ip addr 
+  476  docker network create --help
+  477  docker network create --driver=bridge --subnet=172.28.0.0/16 --ip-range=172.28.5.0/24 --gateway=172.28.5.254 mybr0
+  478  docker network ls 
+  479  docker network inspect mybr0               
+  480  ip addr 
+  481  docker run -d -p 8081:80 --network mybr0 amitvashist7/myapache-qual:v4 
+  482  docker run -d -p 8089:80 --network mybr0 amitvashist7/myapache-qual:v4 
+  483  docker ps 
+  484  docker inspect 2811bddbb9dd        
+  485  curl 172.28.5.0
+  486  docker network inspect mybr0               
+  487  docker run -d -p 8090:80 --network mybr0 amitvashist7/myapache-qual:v2
+  488  docker network inspect mybr0               
+  489  ls
+  490  cd k8s-docker-20190819/
+  491  ls
+  492  cd docker/
+  493  ls
+  494  history > Docker_Day1.txt 
